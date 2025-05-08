@@ -52,8 +52,9 @@ export default function StyledTodoDashboard() {
   return (
     <Box
       sx={{
-        minHeight: '100vh',
+        minHeight: '100dvh',
         display: 'flex',
+        width: '100dvw',
         flexDirection: 'column',
         alignItems: 'center',
         pt: 6,
@@ -62,13 +63,13 @@ export default function StyledTodoDashboard() {
     >
       {/* Heading */}
       <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 }}>
-        Brain Task – <span style={{ color: '#6200ea' }}>May 7</span>
+        Todo-List<span style={{ color: '#6200ea' }}>Tasks</span>
       </Typography>
 
       {/* Centered Card with Tasks */}
       <Card
         sx={{
-          width: '90%',
+          width: '80%',
           maxWidth: 600,
           p: 3,
           boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
