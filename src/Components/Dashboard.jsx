@@ -7,30 +7,19 @@ import {
   DialogContent,
   TextField,
   Button,
-  IconButton
+  IconButton,
+  Card,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-// Color palette like your image
+// Color palette
 const COLORS = ['#6200ea', '#ff4081', '#00bcd4', '#cddc39', '#ffeb3b'];
 
 export default function StyledTodoDashboard() {
   const [todos, setTodos] = useState([]);
   const [open, setOpen] = useState(false);
   const [newTask, setNewTask] = useState('');
-
-  if (todos.some(task => task.text === newTask.trim())) {
-    alert("Task already exists!");
-    return;
-  }
-  const task = {
-  id: Date.now(),
-  text: newTask,
-  color: COLORS[todos.length % COLORS.length],
-  createdAt: new Date().toLocaleString(),
-};
-
 
   // Load saved todos from localStorage
   useEffect(() => {
@@ -57,60 +46,86 @@ export default function StyledTodoDashboard() {
   };
 
   const handleDelete = (id) => {
-    setTodos(prev => prev.filter(t => t.id !== id));
+    setTodos((prev) => prev.filter((t) => t.id !== id));
   };
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        pt: 6,
+        backgroundColor: '#f9f9f9',
+      }}
+    >
       {/* Heading */}
-      <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 'bold', mt: 3 }}>
+      <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 }}>
         Brain Task – <span style={{ color: '#6200ea' }}>May 7</span>
       </Typography>
 
-      {/* Task Grid */}
-      <Box
+      {/* Centered Card with Tasks */}
+      <Card
         sx={{
-          mt: 4,
+          width: '90%',
+          maxWidth: 600,
+          p: 3,
+          boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+          borderRadius: 4,
           display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: 2,
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
-        {todos.map((todo, index) => (
-          <Box
-            key={todo.id}
-            sx={{
-              backgroundColor: todo.color,
-              color: 'white',
-              p: 2,
-              borderRadius: '25px',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-              fontWeight: 'bold',
-              fontSize: '16px',
-              minWidth: '120px',
-              maxWidth: '160px',
-              position: 'relative',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              transition: 'transform 0.2s',
-              '&:hover': {
-                transform: 'scale(1.05)',
-              },
-            }}
-          >
-            {todo.text}
-            <IconButton
-              onClick={() => handleDelete(todo.id)}
-              size="small"
-              sx={{ color: 'white' }}
+        <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2 }}>
+          Your Tasks
+        </Typography>
+
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            gap: 2,
+            width: '100%',
+          }}
+        >
+          {todos.map((todo) => (
+            <Box
+              key={todo.id}
+              sx={{
+                backgroundColor: todo.color,
+                color: 'white',
+                p: 2,
+                borderRadius: '25px',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                fontWeight: 'bold',
+                fontSize: '16px',
+                minWidth: '120px',
+                maxWidth: '160px',
+                position: 'relative',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                transition: 'transform 0.2s',
+                '&:hover': {
+                  transform: 'scale(1.05)',
+                },
+              }}
             >
-              <DeleteIcon fontSize="small" />
-            </IconButton>
-          </Box>
-        ))}
-      </Box>
+              {todo.text}
+              <IconButton
+                onClick={() => handleDelete(todo.id)}
+                size="small"
+                sx={{ color: 'white' }}
+              >
+                <DeleteIcon fontSize="small" />
+              </IconButton>
+            </Box>
+          ))}
+        </Box>
+      </Card>
 
       {/* Floating Add Button */}
       <Fab
@@ -147,7 +162,7 @@ export default function StyledTodoDashboard() {
             variant="contained"
             onClick={handleAddTask}
             fullWidth
-            sx={{ backgroundColor: '#6200ea' }}
+            sx={{ backgroundColor: '#6200ea',justifyContent: 'center' }}
           >
             Add Task
           </Button>
