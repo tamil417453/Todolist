@@ -20,6 +20,18 @@ export default function StyledTodoDashboard() {
   const [open, setOpen] = useState(false);
   const [newTask, setNewTask] = useState('');
 
+  if (todos.some(task => task.text === newTask.trim())) {
+    alert("Task already exists!");
+    return;
+  }
+  const task = {
+  id: Date.now(),
+  text: newTask,
+  color: COLORS[todos.length % COLORS.length],
+  createdAt: new Date().toLocaleString(),
+};
+
+
   // Load saved todos from localStorage
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('styledTodos')) || [];
