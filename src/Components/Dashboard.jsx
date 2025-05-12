@@ -12,16 +12,17 @@ import {
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useNavigate } from 'react-router-dom';
 
-// Color palette
 const COLORS = ['#6200ea', '#ff4081', '#00bcd4', '#cddc39', '#ffeb3b'];
 
 export default function StyledTodoDashboard() {
   const [todos, setTodos] = useState([]);
   const [open, setOpen] = useState(false);
   const [newTask, setNewTask] = useState('');
+  const navigate = useNavigate(); // ⬅️ Needed for logout
 
-  // Load saved todos from localStorage
+  // Load from localStorage
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('styledTodos')) || [];
     setTodos(stored);
@@ -49,31 +50,47 @@ export default function StyledTodoDashboard() {
     setTodos((prev) => prev.filter((t) => t.id !== id));
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn');
+    navigate('/');
+  };
+
   return (
     <Box
       sx={{
         minHeight: '100dvh',
-        display: 'flex',
         width: '100dvw',
+        display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         pt: 6,
         backgroundColor: '#f9f9f9',
+        position: 'relative',
       }}
     >
+      {/* Logout Button */}
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={handleLogout}
+        sx={{ position: 'absolute', top: 16, right: 16 }}
+      >
+        Logout
+      </Button>
+
       {/* Heading */}
       <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 }}>
-        Todo-List<span style={{ color: '#6200ea' }}>Tasks</span>
+        Todo-List <span style={{ color: '#6200ea' }}>Tasks</span>
       </Typography>
 
-      {/* Centered Card with Tasks */}
+      {/* Task Card */}
       <Card
         sx={{
           width: '80%',
           maxWidth: 600,
           p: 3,
-          boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
           borderRadius: 4,
+          boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -163,7 +180,7 @@ export default function StyledTodoDashboard() {
             variant="contained"
             onClick={handleAddTask}
             fullWidth
-            sx={{ backgroundColor: '#6200ea',justifyContent: 'center' }}
+            sx={{ backgroundColor: '#6200ea' }}
           >
             Add Task
           </Button>
