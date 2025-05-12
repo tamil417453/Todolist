@@ -56,16 +56,19 @@ export default function StyledTodoDashboard() {
   };
 
   return (
+    
     <Box
       sx={{
-        minHeight: '100dvh',
         width: '100dvw',
+        height:'90dvh',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         pt: 6,
-        backgroundColor: '#f9f9f9',
         position: 'relative',
+        backgroundImage: 'url(/122.jpeg)', // Replace with your background image path
+        backgroundPosition: 'center',
+        // justifyContent: 'center',
       }}
     >
       {/* Logout Button */}
@@ -73,20 +76,20 @@ export default function StyledTodoDashboard() {
         variant="contained"
         color="secondary"
         onClick={handleLogout}
-        sx={{ position: 'absolute', top: 16, right: 16 }}
+        sx={{ position: 'absolute', bottom: 24, left: 570 }}
       >
         Logout
       </Button>
 
       {/* Heading */}
-      <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 }}>
-        Todo-List <span style={{ color: '#6200ea' }}>Tasks</span>
+      <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 ,color:'violet'}}>
+        Todo-List <span style={{ color: 'blue' }}>Tasks</span>
       </Typography>
 
       {/* Task Card */}
       <Card
         sx={{
-          width: '80%',
+          width: '60%',
           maxWidth: 600,
           p: 3,
           borderRadius: 4,
@@ -152,7 +155,7 @@ export default function StyledTodoDashboard() {
         sx={{
           position: 'fixed',
           bottom: 24,
-          right: 24,
+          right: 600,
           backgroundColor: '#ff4081',
           color: 'white',
           '&:hover': {

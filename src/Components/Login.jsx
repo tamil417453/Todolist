@@ -38,16 +38,24 @@ const Login = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         display:'flex',
-        backgroundRepeat: 'no-repeat',
+        flexDirection:'column',
         justifyContent: 'center',
         alignItems: 'center',
       }}
-    >
-      <Paper elevation={6} sx={{ p: 4, width: '90%', maxWidth: 400, bgcolor: 'rgba(255,255,255,0.9)' }}>
-        <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 2, color: '#6200ea' }}>
-          Welcome Back!
-        </Typography>
-        <br/>
+    >      
+
+   
+      <Paper elevation={6} sx={{ p: 4, width: '100%', maxWidth: 400, bgcolor: 'rgba(255,255,255,0.9)' ,
+         display:'flex',
+         flexDirection:'column',
+         justifyContent: 'center',
+         alignItems: 'center',
+      }}>
+       
+       <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 2, color: '#6200ea' }}>
+    Welcome Back!
+  </Typography>
+      
 
         <form sx={{color: 'hsla(0, 0.00%, 100.00%, 0.90)' }} onSubmit={formik.handleSubmit}>
           <TextField sx={{color:'white'}}
