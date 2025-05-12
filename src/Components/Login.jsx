@@ -38,7 +38,6 @@ const Login = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         display:'flex',
-        flexDirection:'column',
         backgroundRepeat: 'no-repeat',
         justifyContent: 'center',
         alignItems: 'center',
